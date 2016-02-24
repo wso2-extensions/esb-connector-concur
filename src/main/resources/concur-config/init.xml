@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="init" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="apiUrl" description="Url of Concur API."/>
+    <parameter name="accessToken"
+               description="The access token to authenticate to Concur using OAuth 2.0."/>
+    <parameter name="contentType" description="Content Type value for Content-Type header field."/>
+
+    <sequence>
+        <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
+        <property name="uri.var.accessToken" expression="$func:accessToken"/>
+        <property name="uri.var.contentType" expression="$func:contentType"/>
+        <property name="Authorization"
+                  expression="fn:concat('OAuth ', get-property('uri.var.accessToken'))"
+                  scope="transport" type="STRING"/>
+        <property name="Content-Type" expression="get-property('uri.var.contentType')"
+                  scope="transport" type="STRING"/>
+    </sequence>
+</template>
