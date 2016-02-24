@@ -17,7 +17,6 @@
  ~  under the License.
 -->
 <template name="deleteQuickExpense" xmlns="http://ws.apache.org/ns/synapse">
-
     <parameter name="id" description="The QuickExpense ID."/>
     <parameter name="user" description="The login ID of the user."/>
 

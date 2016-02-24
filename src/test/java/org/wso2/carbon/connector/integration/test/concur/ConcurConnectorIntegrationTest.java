@@ -40,27 +40,17 @@ import java.util.Map;
 public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase {
 
     private Map<String, String> esbRequestHeadersMap = new HashMap<String, String>();
-
     private Map<String, String> apiRequestHeadersMap = new HashMap<String, String>();
-
     private Map<String, String> parametersMap = new HashMap<String, String>();
 
     private String entryId;
-
     private String paymentTypeId;
-
     private String reportId;
-
     private String entryIdOptional;
-
     private String multipartProxyUrl;
-
     private String receiptImageId;
-
     private String receiptImageIdOptional;
-
     private String expenseId;
-
     private String expenseIdOptional;
 
     /**
@@ -78,7 +68,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         apiRequestHeadersMap.putAll(esbRequestHeadersMap);
         apiRequestHeadersMap.put("Authorization", "OAuth " + connectorProperties.getProperty("accessToken"));
-
     }
 
     /**
@@ -100,7 +89,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//ID", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//Name", esbRestResponse.getBody()),
                 getValueByExpression("//Name", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -108,7 +96,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
      */
     @Test(dependsOnMethods = {"testGetAllAttendeeTypesWithMandatoryParameters"}, groups = {"wso2.esb"}, description = "Concur {getAllAttendeeTypes} integration test with optional parameters.")
     public void testGetAllAttendeeTypesWithOptionalParameters() throws Exception {
-
 
         esbRequestHeadersMap.put("Action", "urn:getAllAttendeeTypes");
         RestResponse<OMElement> esbRestResponse =
@@ -123,7 +110,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//ID", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//Name", esbRestResponse.getBody()),
                 getValueByExpression("//Name", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -143,7 +129,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(getValueByExpression("//Message", esbRestResponse.getBody()),
                 getValueByExpression("//Message", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -170,7 +155,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(getValueByExpression("//decimal", esbRestResponse.getBody()),
                 getValueByExpression("//decimal", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -195,7 +179,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 400);
-
     }
 
     /**
@@ -217,7 +200,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//ID", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//PaymentTypeCode", esbRestResponse.getBody()),
                 getValueByExpression("//PaymentTypeCode", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -239,7 +221,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//ID", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//PaymentTypeCode", esbRestResponse.getBody()),
                 getValueByExpression("//PaymentTypeCode", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -259,7 +240,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(getValueByExpression("//Message", esbRestResponse.getBody()),
                 getValueByExpression("//Message", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -285,7 +265,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//TransactionAmount", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//OwnerName", esbRestResponse.getBody()),
                 getValueByExpression("//OwnerName", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -313,7 +292,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//TransactionAmount", apiRestResponse.getBody()));
         Assert.assertEquals(getValueByExpression("//TransactionDate", esbRestResponse.getBody()),
                 getValueByExpression("//TransactionDate", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -332,7 +310,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(getValueByExpression("//Message", esbRestResponse.getBody()),
                 getValueByExpression("//Message", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -348,12 +325,9 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         attachmentHeadersMap.put("Content-Type", connectorProperties.getProperty("imageContentType"));
 
         final String endPointUrl = multipartProxyUrl + "?apiUrl=" + connectorProperties.getProperty("apiUrl");
-
         final MultipartFormdataProcessor fileRequestProcessor =
                 new MultipartFormdataProcessor(endPointUrl, attachmentHeadersMap);
-
         final File file = new File(pathToResourcesDirectory + connectorProperties.getProperty("imageFileName"));
-
         fileRequestProcessor.addFiletoRequestBody(file);
         final RestResponse<OMElement> esbRestResponse = fileRequestProcessor.processAttachmentForXmlResponse();
 
@@ -378,12 +352,9 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         final String endPointUrl =
                 multipartProxyUrl + "?apiUrl=" + connectorProperties.getProperty("apiUrl") + "&user="
                         + connectorProperties.getProperty("user");
-
         Thread.sleep(Long.parseLong(connectorProperties.getProperty("timeOut")));
-
         final MultipartFormdataProcessor fileRequestProcessor =
                 new MultipartFormdataProcessor(endPointUrl, attachmentHeadersMap);
-
         final File file = new File(pathToResourcesDirectory + connectorProperties.getProperty("imageFileName"));
 
         fileRequestProcessor.addFiletoRequestBody(file);
@@ -458,7 +429,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbResponseReceiptImageList.size(), apiResponseReceiptImageList.size());
         Assert.assertEquals(esbResponseReceiptImageList.get(0).getFirstChildWithName(new QName("ID")).getText(),
                 apiResponseReceiptImageList.get(0).getFirstChildWithName(new QName("ID")).getText());
-
     }
 
     /**
@@ -499,7 +469,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbResponseReceiptImageList.size(), apiResponseReceiptImageList.size());
         Assert.assertEquals(esbResponseReceiptImageList.get(0).getFirstChildWithName(new QName("ID")).getText(),
                 apiResponseReceiptImageList.get(0).getFirstChildWithName(new QName("ID")).getText());
-
     }
 
     /**
@@ -519,7 +488,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(esbRestResponse.getBody().getFirstChildWithName(new QName("Message")).getText(),
                 apiRestResponse.getBody().getFirstChildWithName(new QName("Message")).getText());
-
     }
 
     /**
@@ -548,7 +516,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbResponseURI, apiResponseURI);
-
     }
 
     /**
@@ -578,7 +545,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbResponseURI, apiResponseURI);
-
     }
 
     /**
@@ -600,7 +566,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(esbRestResponse.getBody().getFirstChildWithName(new QName("Message")).getText(),
                 apiRestResponse.getBody().getFirstChildWithName(new QName("Message")).getText());
-
     }
 
     /**
@@ -667,14 +632,12 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         final RestResponse<OMElement> esbRestResponse =
                 sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_deleteReceiptImage_negative.xml");
-
         final String apiEndPoint =
                 connectorProperties.getProperty("apiUrl") + "/api/v3.0/expense/receiptimages/InvalidReceiptId";
         final RestResponse<OMElement> apiRestResponse = sendXmlRestRequest(apiEndPoint, "DELETE", apiRequestHeadersMap);
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
@@ -699,7 +662,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         paymentTypeId = getValueByExpression("//PaymentTypeID", esbRestResponse.getBody());
         reportId = getValueByExpression("//ReportID", esbRestResponse.getBody());
-
     }
 
     /**
@@ -831,7 +793,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(getValueByExpression("//Response/ID", esbRestResponse.getBody()),
                 getValueByExpression("//Entry/ID", apiRestResponse.getBody()));
-
     }
 
     /**
@@ -969,7 +930,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbTransactionAmount, apiTransactionAmount);
-
     }
 
     /**
@@ -998,7 +958,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbVendorDescription, apiVendorDescription);
-
     }
 
     /**
@@ -1025,7 +984,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(esbMessage, apiMessage);
-
     }
 
     /**
@@ -1078,7 +1036,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(esbVendorDescription, apiVendorDescription);
-
     }
 
     /**
@@ -1108,7 +1065,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(esbMessage, apiMessage);
-
     }
 
     /**
@@ -1125,7 +1081,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         RestResponse<OMElement> esbRestResponse =
                 sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_deleteQuickExpense_mandatory.xml",
                         parametersMap);
-
         Thread.sleep(Long.parseLong(connectorProperties.getProperty("timeOut")));
 
         String apiEndPoint = connectorProperties.getProperty("apiUrl") + "/api/v3.0/expense/quickexpenses/" + expenseId;
@@ -1133,7 +1088,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
@@ -1148,7 +1102,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         RestResponse<OMElement> esbRestResponse =
                 sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_deleteQuickExpense_optional.xml",
                         parametersMap);
-
         Thread.sleep(Long.parseLong(connectorProperties.getProperty("timeOut")));
 
         String apiEndPoint =
@@ -1158,7 +1111,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
-
     }
 
     /**
@@ -1181,6 +1133,5 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 400);
-
     }
 }

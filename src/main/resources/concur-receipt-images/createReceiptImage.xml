@@ -17,7 +17,6 @@
  ~  under the License.
 -->
 <template name="createReceiptImage" xmlns="http://ws.apache.org/ns/synapse">
-
     <parameter name="user" description="The login ID of the user."/>
     <parameter name="apiUrl" description="Url of Concur API."/>
 
