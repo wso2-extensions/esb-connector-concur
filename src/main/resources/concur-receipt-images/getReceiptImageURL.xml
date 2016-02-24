@@ -17,7 +17,6 @@
  ~  under the License.
 -->
 <template name="getReceiptImageURL" xmlns="http://ws.apache.org/ns/synapse">
-
     <parameter name="id" description="The receipt Image ID which is required."/>
     <parameter name="user" description="The login ID of the user."/>
 

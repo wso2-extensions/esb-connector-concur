@@ -17,7 +17,6 @@
  ~  under the License.
 -->
 <template name="getExchangeRates" xmlns="http://ws.apache.org/ns/synapse">
-
     <parameter name="fromCurrency"
                description="The 3-letter ISO 4217 currency code for exchange from currency."/>
     <parameter name="toCurrency"

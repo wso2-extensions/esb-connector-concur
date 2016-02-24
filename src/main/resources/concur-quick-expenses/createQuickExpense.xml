@@ -17,7 +17,6 @@
  ~  under the License.
 -->
 <template name="createQuickExpense" xmlns="http://ws.apache.org/ns/synapse">
-
     <parameter name="quickExpense" description="The QuickExpense object to create."/>
     <parameter name="user" description="The login ID of the user."/>
 
