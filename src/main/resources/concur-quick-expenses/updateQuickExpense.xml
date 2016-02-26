@@ -20,14 +20,11 @@
     <parameter name="id" description="The QuickExpense ID."/>
     <parameter name="quickExpense" description="The QuickExpense object to create."/>
     <parameter name="user" description="The login ID of the user."/>
-
     <sequence>
-
         <property name="uri.var.id" expression="$func:id"/>
         <property name="uri.var.quickExpense" expression="$func:quickExpense"/>
         <property name="uri.var.user" expression="$func:user"/>
         <property name="uri.var.query" value=""/>
-
         <!-- The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter. -->
         <filter xpath="(string(get-property('uri.var.user'))) and get-property('uri.var.user') != ''">
             <then>
@@ -35,7 +32,6 @@
                           expression="fn:concat('?user=',get-property('uri.var.user'))"/>
             </then>
         </filter>
-
         <filter xpath="get-property('uri.var.contentType') = 'application/xml'">
             <then>
                 <payloadFactory media-type="xml">
@@ -46,12 +42,10 @@
                         <arg expression="get-property('uri.var.quickExpense')"/>
                     </args>
                 </payloadFactory>
-
                 <!-- Remove root element via XSLT -->
                 <xslt key="concur_removeRootElement.xslt"/>
             </then>
         </filter>
-
         <filter xpath="get-property('uri.var.contentType') = 'application/json'">
             <then>
                 <payloadFactory media-type="json">
@@ -62,16 +56,13 @@
                 </payloadFactory>
             </then>
         </filter>
-
         <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
-
         <call>
             <endpoint>
                 <http method="put"
                       uri-template="legacy-encoding:{uri.var.apiUrl}/api/v3.0/expense/quickexpenses/{uri.var.id}{uri.var.query}"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="Pragma" scope="transport" action="remove"/>
         <header name="Webserver" scope="transport" action="remove"/>
