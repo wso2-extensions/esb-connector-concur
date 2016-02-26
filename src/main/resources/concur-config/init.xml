@@ -21,7 +21,6 @@
     <parameter name="accessToken"
                description="The access token to authenticate to Concur using OAuth 2.0."/>
     <parameter name="contentType" description="Content Type value for Content-Type header field."/>
-
     <sequence>
         <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
         <property name="uri.var.accessToken" expression="$func:accessToken"/>
