@@ -179,7 +179,8 @@
     <scm>
         <connection>scm:git:https://github.com/wso2-extensions/esb-connector-concur.git</connection>
         <url>https://github.com/wso2-extensions/esb-connector-concur.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-concur
+        <developerConnection>
+            scm:git:https://github.com/wso2-extensions/esb-connector-concur
         </developerConnection>
         <tag>HEAD</tag>
     </scm>
