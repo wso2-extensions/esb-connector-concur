@@ -9,9 +9,9 @@ Product: Integration tests for WSO2 ESB Concur connector
     Tested Platforms:
 
     - Microsoft WINDOWS V-7
-    - Ubuntu 13.04
+    - Ubuntu 14.04
     - Mac OSx 10.9
-    - WSO2 ESB 4.9.0
+    - WSO2 ESB 5.0.0-BETA
 
 Note:
 	This test suite can execute based on two scenarios.
@@ -19,9 +19,9 @@ Note:
 		2. Setup new concur account and follow all the instruction given below in step 5.
 
 Steps to follow in setting integration test.
- 1.  Download ESB 4.9.0 from official site.
+ 1.  Download ESB 5.0.0-BETA from official site.
 
- 2.  Navigate to location "/wso2esb-4.9.0/repository/conf/axis2" and add/uncomment following lines in "axis2.xml" and Message Formatters and Message Builders should be added for each of the content types of the files to be added as attachments.
+ 2.  Navigate to location "/wso2esb-5.0.0-BETA/repository/conf/axis2" and add/uncomment following lines in "axis2.xml" and Message Formatters and Message Builders should be added for each of the content types of the files to be added as attachments.
 
 		Message Formatters :-
 
@@ -37,7 +37,7 @@ Steps to follow in setting integration test.
         <messageBuilder contentType="image/jpeg" class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
         <messageBuilder contentType="image/png" class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
 
- 3.  Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "<CONCUR_CONNECTORS_HOME>/repository/".
+ 3.  Compress modified ESB as wso2esb-5.0.0-BETA.zip and copy that zip file in to location "<CONCUR_CONNECTORS_HOME>/repository/".
 
 
  4.  Prerequisites for Concur Connector Integration Testing

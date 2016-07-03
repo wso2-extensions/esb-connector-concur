@@ -23,7 +23,6 @@
         <dependency component="concur-quick-expenses"/>
         <dependency component="concur-receipt-images"/>
         <dependency component="concur-attendee-types"/>
-        <dependency component="concur-exchange-rates"/>
         <description>Concur connector libraries</description>
     </component>
     <icon>icon/icon-small.gif</icon>

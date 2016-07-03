@@ -6,7 +6,7 @@
         <Comment>udara</Comment>
         <Description>udara udara</Description>
         <ExchangeRate>1.0</ExchangeRate>
-        <ExpenseTypeCode>AIRFE</ExpenseTypeCode>
+        <ExpenseTypeCode>AIRFR</ExpenseTypeCode>
         <IsBillable>false</IsBillable>
         <IsPersonal>false</IsPersonal>
         <PaymentTypeID>%s(paymentTypeId)</PaymentTypeID>
