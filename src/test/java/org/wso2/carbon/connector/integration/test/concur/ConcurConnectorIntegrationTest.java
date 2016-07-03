@@ -28,14 +28,7 @@ import org.wso2.connector.integration.test.base.RestResponse;
 
 import javax.xml.namespace.QName;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase {
 
@@ -129,56 +122,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
         Assert.assertEquals(getValueByExpression("//Message", esbRestResponse.getBody()),
                 getValueByExpression("//Message", apiRestResponse.getBody()));
-    }
-
-    /**
-     * Positive test case for getExchangeRates method with mandatory parameters.
-     */
-    @Test(priority = 1, groups = {"wso2.esb"}, description = "Concur {getExchangeRates} integration test with mandatory parameters.")
-    public void testGetExchangeRatesWithMandatoryParameters() throws Exception {
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dateFormat.format(new Date());
-        parametersMap.put("forDate", date);
-
-        esbRequestHeadersMap.put("Action", "urn:getExchangeRates");
-        RestResponse<OMElement> esbRestResponse =
-                sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_getExchangeRates_mandatory.xml",
-                        parametersMap);
-
-        String apiEndPoint =
-                connectorProperties.getProperty("apiUrl")
-                        + "/api/v3.0/expense/exchangerates/?fromCurrency=USD&toCurrency=GBP&forDate=" + date;
-        RestResponse<OMElement> apiRestResponse = sendXmlRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(getValueByExpression("//decimal", esbRestResponse.getBody()),
-                getValueByExpression("//decimal", apiRestResponse.getBody()));
-    }
-
-    /**
-     * Negative test case for getExchangeRates method.
-     */
-    @Test(dependsOnMethods = {"testGetExchangeRatesWithMandatoryParameters"}, groups = {"wso2.esb"}, description = "Concur {getExchangeRates} integration test negative case.")
-    public void testGetExchangeRatesNegativeCase() throws Exception {
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dateFormat.format(new Date());
-        parametersMap.put("forDate", date);
-
-        esbRequestHeadersMap.put("Action", "urn:getExchangeRates");
-        RestResponse<OMElement> esbRestResponse =
-                sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_getExchangeRates_negative.xml",
-                        parametersMap);
-
-        String apiEndPoint =
-                connectorProperties.getProperty("apiUrl") + "/api/v3.0/expense/exchangerates/?fromcurrency=USD"
-                        + "&forDate=" + date;
-        RestResponse<OMElement> apiRestResponse = sendXmlRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 400);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 400);
     }
 
     /**
