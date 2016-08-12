@@ -52,7 +52,7 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("concur-connector-1.0.1-SNAPSHOT");
+        init("concur-connector-1.0.1");
 
         multipartProxyUrl = getProxyServiceURL("concur_multipart");
 
