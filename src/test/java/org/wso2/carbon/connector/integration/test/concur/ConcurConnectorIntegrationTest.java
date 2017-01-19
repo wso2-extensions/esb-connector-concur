@@ -38,7 +38,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
     private String entryId;
     private String paymentTypeId;
-    private String reportId;
     private String entryIdOptional;
     private String multipartProxyUrl;
     private String receiptImageId;
@@ -604,7 +603,6 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 getValueByExpression("//ReportID", apiRestResponse.getBody()));
 
         paymentTypeId = getValueByExpression("//PaymentTypeID", esbRestResponse.getBody());
-        reportId = getValueByExpression("//ReportID", esbRestResponse.getBody());
     }
 
     /**
@@ -723,7 +721,7 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         esbRequestHeadersMap.put("Action", "urn:createExpenseEntry");
         parametersMap.put("paymentTypeId", paymentTypeId);
-        parametersMap.put("reportId", reportId);
+
         RestResponse<OMElement> esbRestResponse =
                 sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_createExpenseEntry_mandatory.xml",
                         parametersMap);
@@ -746,7 +744,7 @@ public class ConcurConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
         esbRequestHeadersMap.put("Action", "urn:createExpenseEntry");
         parametersMap.put("paymentTypeId", paymentTypeId);
-        parametersMap.put("reportId", reportId);
+
         RestResponse<OMElement> esbRestResponse =
                 sendXmlRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_createExpenseEntry_optional.xml",
                         parametersMap);

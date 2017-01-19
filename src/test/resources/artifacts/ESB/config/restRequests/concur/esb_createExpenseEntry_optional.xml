@@ -10,7 +10,7 @@
         <IsBillable>false</IsBillable>
         <IsPersonal>false</IsPersonal>
         <PaymentTypeID>%s(paymentTypeId)</PaymentTypeID>
-        <ReportID>%s(reportId)</ReportID>
+        <ReportID>%s(createReportId)</ReportID>
         <TaxReceiptType>T</TaxReceiptType>
         <TransactionAmount>20</TransactionAmount>
         <TransactionCurrencyCode>CAD</TransactionCurrencyCode>

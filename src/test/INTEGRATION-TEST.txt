@@ -9,9 +9,9 @@ Product: Integration tests for WSO2 ESB Concur connector
     Tested Platforms:
 
     - Microsoft WINDOWS V-7
-    - Ubuntu 14.04
+    - Ubuntu 16.04
     - Mac OSx 10.9
-    - WSO2 ESB 5.0.0-BETA
+    - WSO2 ESB 5.0.0
 
 Note:
 	This test suite can execute based on two scenarios.
@@ -19,7 +19,7 @@ Note:
 		2. Setup new concur account and follow all the instruction given below in step 5.
 
 Steps to follow in setting integration test.
- 1.  Download ESB 5.0.0-BETA from official site.
+ 1.  Download ESB 5.0.0 from official site.
 
  2.  Navigate to location "/wso2esb-5.0.0-BETA/repository/conf/axis2" and add/uncomment following lines in "axis2.xml" and Message Formatters and Message Builders should be added for each of the content types of the files to be added as attachments.
 
@@ -37,7 +37,7 @@ Steps to follow in setting integration test.
         <messageBuilder contentType="image/jpeg" class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
         <messageBuilder contentType="image/png" class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
 
- 3.  Compress modified ESB as wso2esb-5.0.0-BETA.zip and copy that zip file in to location "<CONCUR_CONNECTORS_HOME>/repository/".
+ 3.  Compress modified ESB as wso2esb-5.0.0.zip and copy that zip file in to location "<CONCUR_CONNECTORS_HOME>/repository/".
 
 
  4.  Prerequisites for Concur Connector Integration Testing
@@ -60,7 +60,8 @@ Steps to follow in setting integration test.
      f)  Select the partner application available and click modify. This opens Modify Partner Application dialog.
 	 g)  Tick all the APIs available under API's category in the Modify Partner Application dialog. Keep the other values as it is and click ok.
 	 h)  Go to Expense -> New Expense Report. Once the Expense Report is created, add a new Expense.
-	 i)	 Generate New Access Token using OAuth web flow using bellow steps:
+	 i)  Click on the Expense Report that was created on step h). Then go to Details -> Report Header and copy the Report ID. Use that ID in step k) 8).
+	 j)	 Generate New Access Token using OAuth web flow using bellow steps:
 
 			1) Use following redirection URL format to retrieve OAuth code using web browser.
 
@@ -76,7 +77,7 @@ Steps to follow in setting integration test.
 			Note: Use OAuth Code returned from above step (1) for code URL parameter. Use the Consumer Key and Consumer Secret returned from step (b)
 		          for client_id and client_secret URL parameter.
 
-     j) Update the Concur properties file at location "{CONCUR_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/" as below.
+     k) Update the Concur properties file at location "{CONCUR_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/" as below.
 		Following fields in the property file should be updated appropriately.
 
 	    1) imageContentType - the content type of the image to be added.
@@ -86,6 +87,7 @@ Steps to follow in setting integration test.
 		5) updatedTransactionAmount - the total amount of the expense in the original currency, with up to three decimal places for update a Quick Expense Entry.
 		6) vendorDescription - The descriptive text of the vendor for create a quick expense entry. Maximum Length is 64.
 		7) updatedVendorDescription - The descriptive text of the vendor for update a quick expense entry. Maximum Length is 64.
+        8) createReportId = The ID of the Report to which the Expense Entry need to create.
 
 		NOTE : Update the access token , user info.
 
