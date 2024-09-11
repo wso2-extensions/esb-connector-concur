@@ -4,7 +4,7 @@
     "category": "Other",
     "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/Concur+Connector",
     "description": "The Concur connector allows you to access the Concur REST API through the WSO2 ESB. Concur is an easy-to-use business travel and expense management software solution.",
-    "status": "Active",
+    "status": "Inactive",
     "labels": [
         "connector"
     ],
